@@ -3,7 +3,7 @@ import SwiftUI
 struct RepoItem: View {
     var body: some View {
         HStack {
-            Image(uiImage: .githublogo)
+            Image(uiImage: .githubLogo)
                 .resizable()
                 .frame(width: 80, height: 80)
             
