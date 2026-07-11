@@ -23,8 +23,6 @@ struct RepoList: View {
                     RepoItem()
                     RepoItem()
                     RepoItem()
-                    RepoItem()
-                    RepoItem()
                 }
             }
             .navigationTitle("Repositorios.")
