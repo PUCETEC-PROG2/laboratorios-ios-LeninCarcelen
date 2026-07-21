@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AC62BDF430100B3900AED5FF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = AC62BDF330100B3900AED5FF /* Alamofire */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		AC15474E2F16A0A300962CDB /* GithubClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC62BDF430100B3900AED5FF /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = GithubClient;
 			packageProductDependencies = (
+				AC62BDF330100B3900AED5FF /* Alamofire */,
 			);
 			productName = GithubClient;
 			productReference = AC15474E2F16A0A300962CDB /* GithubClient.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = AC1547452F16A0A300962CDB;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				AC62BDF230100B3900AED5FF /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = AC15474F2F16A0A300962CDB /* Products */;
 			projectDirPath = "";
@@ -322,6 +331,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AC62BDF230100B3900AED5FF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AC62BDF330100B3900AED5FF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC62BDF230100B3900AED5FF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AC1547462F16A0A300962CDB /* Project object */;
 }
