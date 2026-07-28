@@ -9,16 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selectedTab: Int = 0
+    @StateObject private var repoListViewController = RepoListViewController()
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            RepoList()
+            RepoList(viewController: repoListViewController)
                 .tabItem {
                     Label("Repositorios", systemImage: "arrow.triangle.branch")
                 }
                 .tag(0)
 
-            RepoForm(selectTab: $selectedTab)
+            RepoForm(selectTab: $selectedTab, repoListViewController: repoListViewController)
                 .tabItem {
                     Label("Crear", systemImage: "plus.circle.fill")
                 }

@@ -16,25 +16,32 @@ class RepoFormViewController: ObservableObject {
     @Published var errorMsg: String?
 
     private let githubService: GithubService
+    private let listController: RepoListViewController?
 
-    init(service: GithubService = .shared) {
+    init(service: GithubService = .shared, listController: RepoListViewController? = nil) {
         self.githubService = service
+        self.listController = listController
     }
 
-    func createRepository() async {
+    @discardableResult
+    func createRepository() async -> Bool {
         isLoading = true
         errorMsg = nil
         defer { isLoading = false }
 
         do {
-            self.repository = try await githubService.createRepository(
+            let createdRepository = try await githubService.createRepository(
                 name: repoName,
                 desc: repoDescription
             )
+            self.repository = createdRepository
             self.repoName = ""
             self.repoDescription = ""
+            listController?.appendRepository(createdRepository)
+            return true
         } catch {
             self.errorMsg = error.localizedDescription
+            return false
         }
     }
 }

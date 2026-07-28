@@ -29,4 +29,9 @@ class RepoListViewController: ObservableObject {
         }
         isLoading = false
     }
+
+    func appendRepository(_ repository: Repository) {
+        guard !repositories.contains(where: { $0.id == repository.id }) else { return }
+        repositories.insert(repository, at: 0)
+    }
 }

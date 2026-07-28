@@ -9,8 +9,13 @@ import SwiftUI
 import Foundation
 
 struct RepoForm: View {
-    @StateObject private var viewController = RepoFormViewController()
+    @StateObject private var viewController: RepoFormViewController
     @Binding var selectTab : Int
+
+    init(selectTab: Binding<Int>, repoListViewController: RepoListViewController) {
+        self._selectTab = selectTab
+        self._viewController = StateObject(wrappedValue: RepoFormViewController(listController: repoListViewController))
+    }
     
     var body: some View {
         NavigationStack {
@@ -57,8 +62,8 @@ struct RepoForm: View {
                         
                         Button(action: {
                             Task {
-                                await viewController.createRepository()
-                                if viewController.errorMsg == nil {
+                                let created = await viewController.createRepository()
+                                if created {
                                     selectTab = 0
                                 }
                             }

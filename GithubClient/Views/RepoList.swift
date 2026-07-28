@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RepoList: View {
-    @StateObject private var viewController = RepoListViewController()
+    @ObservedObject var viewController: RepoListViewController
     
     var body: some View {
         NavigationStack {
@@ -27,9 +27,11 @@ struct RepoList: View {
             }
             .navigationTitle("Repositorios")
         }
-        .onAppear { 
-            Task {
-                await viewController.loadRepositories()
+        .onAppear {
+            if viewController.repositories.isEmpty {
+                Task {
+                    await viewController.loadRepositories()
+                }
             }
         }
     }
