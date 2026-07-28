@@ -10,22 +10,28 @@ import SwiftUI
 struct Profile: View {
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
+            VStack(spacing: 16) {
                 Text("Lenin Carcelen")
                     .font(.title)
-                
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+
                 Image("githubLogo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 100, height: 100)
-                
+                    .frame(width: 120, height: 120)
+                    .clipShape(Circle())
+
                 Text("LeninCarcelen")
                     .font(.headline)
-                    .padding(.vertical)
-                
-                Text("Programador junior de ios")
-                
+                    .foregroundStyle(.secondary)
+
+                Text("Programador junior de iOS")
+                    .font(.subheadline)
+                    .multilineTextAlignment(.center)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding()
             .navigationTitle("Perfil de usuario")
         }
     }
