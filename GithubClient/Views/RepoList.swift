@@ -14,7 +14,7 @@ struct RepoList: View {
         NavigationStack {
             Group {
                 if viewController.isLoading {
-                    ProgressView("Cargando repositorio...")
+                    ProgressView("Cargando repositorios...")
                 } else if let errorMsg = viewController.errorMsg {
                     Text(errorMsg)
                         .foregroundStyle(.red)

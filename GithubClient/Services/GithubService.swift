@@ -4,9 +4,9 @@ import Alamofire
 class GithubService {
     static let shared = GithubService()
     private let baseUrl = AppConfig.apiBaseURL
-
+    
     private init() {}
-
+    
     private var headers: HTTPHeaders {
         var headers: HTTPHeaders = [
             "Accept": "application/vnd.github+json",
@@ -17,7 +17,7 @@ class GithubService {
         }
         return headers
     }
-
+    
     func getRepositories() async throws -> [Repository] {
         return try await AF.request(
             "\(baseUrl)/user/repos",
@@ -35,18 +35,18 @@ class GithubService {
         .serializingDecodable([Repository].self)
         .value
     }
-
+    
     func createRepository(name: String, desc: String) async throws -> Repository {
         let cleanName = name.trimmingCharacters(in: .whitespacesAndNewlines)
         let cleanDesc = desc.trimmingCharacters(in: .whitespacesAndNewlines)
-
+        
         var parameters: [String: Any] = [
             "name": cleanName
         ]
         if !cleanDesc.isEmpty {
             parameters["description"] = cleanDesc
         }
-
+        
         let response = await AF.request(
             "\(baseUrl)/user/repos",
             method: .post,
@@ -54,16 +54,16 @@ class GithubService {
             encoding: JSONEncoding.default,
             headers: headers
         )
-        .validate(statusCode: 200..<300)
-        .serializingDecodable(Repository.self)
-        .response
-
+            .validate(statusCode: 200..<300)
+            .serializingDecodable(Repository.self)
+            .response
+        
         if let data = response.data,
            let json = String(data: data, encoding: .utf8) {
             print("Response Body:")
             print(json)
         }
-
+        
         switch response.result {
         case .success(let repo):
             return repo
@@ -73,4 +73,17 @@ class GithubService {
             throw error
         }
     }
+    
+    func getUserProfile() async throws -> UserInfo {
+        return try await AF.request(
+            "\(baseUrl)/user",
+            method: .get,
+            headers: headers
+        )
+        .validate(statusCode: 200..<300)
+        .serializingDecodable(UserInfo.self)
+        .value
+    }
 }
+
+
