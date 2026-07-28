@@ -11,18 +11,20 @@ struct Profile: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                Text("Alejandro Vargas")
+                Text("Lenin Carcelen")
                     .font(.title)
-
+                
                 Image("githubLogo")
                     .resizable()
                     .scaledToFit()
-
-                Text("VargasAlejandro27")
+                    .frame(width: 100, height: 100)
+                
+                Text("LeninCarcelen")
                     .font(.headline)
                     .padding(.vertical)
-
-                Text("7 palabras Esenciaaaa")
+                
+                Text("Programador junior de ios")
+                
             }
             .navigationTitle("Perfil de usuario")
         }

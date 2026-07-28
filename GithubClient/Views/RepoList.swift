@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RepoList: View {
-    @StateObject private var viewController = ReposListViewController()
+    @StateObject private var viewController = RepoListViewController()
     
     var body: some View {
         NavigationStack {

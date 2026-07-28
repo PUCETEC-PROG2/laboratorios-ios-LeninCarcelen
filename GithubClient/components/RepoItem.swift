@@ -56,6 +56,7 @@ struct RepoItem: View {
             }
 
             Spacer()
+            
         }
         .padding()
     }
