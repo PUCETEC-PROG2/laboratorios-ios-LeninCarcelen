@@ -35,7 +35,6 @@ struct Profile: View {
                         .clipShape(Circle())
                         .padding(.bottom, 8)
                         
-                        
                         Text(user.name ?? user.login)
                             .font(.title)
                             .bold()
