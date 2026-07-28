@@ -9,43 +9,53 @@ import SwiftUI
 
 struct RepoItem: View {
     let repository: Repository
-    var body: some View {
-        HStack {
-            AsyncImage (url: URL(string:
-                                    repository.owner.avatarUrl)!) {Image in
-                Image
-                    .resizable()
-                    .scaledToFill()
 
-            }placeholder: {
-                Image(uiImage: .githubLogo)
+    var body: some View {
+        HStack(spacing: 12) {
+            if let url = URL(string: repository.owner.avatarUrl) {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    Image("githubLogo")
+                        .resizable()
+                        .scaledToFill()
+                }
+                .frame(width: 80, height: 80)
+                .clipShape(Circle())
+            } else {
+                Image("githubLogo")
                     .resizable()
                     .scaledToFill()
+                    .frame(width: 80, height: 80)
+                    .clipShape(Circle())
             }
-            .frame(width: 80, height: 80)
-            
-            Spacer()
-            
+
             VStack(alignment: .leading, spacing: 5) {
                 Text(repository.name)
                     .font(.title2)
                     .bold()
-                if let description = repository.description {
+
+                if let description = repository.description, !description.isEmpty {
                     Text(description)
                         .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
-                if let Language = repository.language
-                {
+
+                if let language = repository.language, !language.isEmpty {
                     HStack {
                         Text("Lenguaje")
                             .font(.caption)
                         Spacer()
-                        Text("Swift")
+                        Text(language)
                             .font(.caption)
                             .bold()
-                }
+                    }
                 }
             }
+
+            Spacer()
         }
         .padding()
     }
@@ -53,14 +63,14 @@ struct RepoItem: View {
 
 #Preview {
     RepoItem(
-        repository:Repository(
-            id:1,
+        repository: Repository(
+            id: 1,
             name: "Lenin Carcelen",
             description: "Programador ios Junior",
             language: "Swift",
             owner: UserInfo(
                 login: "LeninCarcelen",
-                name:"Lenin Carcelen",
+                name: "Lenin Carcelen",
                 avatarUrl: "https://avatars.githubusercontent.com/u/173552925?v=4",
                 bio: "esta es una prueba"
             )

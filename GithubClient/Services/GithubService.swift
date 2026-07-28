@@ -1,20 +1,23 @@
 import Foundation
 import Alamofire
 
-class Githubservice {
-    static let shared = Githubservice()
+class GithubService {
+    static let shared = GithubService()
     private let baseUrl = AppConfig.apiBaseURL
-    
+
     private init() {}
-    
+
     private var headers: HTTPHeaders {
-        [
-            "Authorization": "Bearer \(AppConfig.apiToken)",
+        var headers: HTTPHeaders = [
             "Accept": "application/vnd.github+json",
             "User-Agent": "GithubClientApp"
         ]
+        if !AppConfig.apiToken.isEmpty {
+            headers["Authorization"] = "Bearer \(AppConfig.apiToken)"
+        }
+        return headers
     }
-    
+
     func getRepositories() async throws -> [Repository] {
         return try await AF.request(
             "\(baseUrl)/user/repos",
@@ -24,7 +27,7 @@ class Githubservice {
                 "direction": "desc",
                 "per_page": 100,
                 "affiliation": "owner",
-                "t": NSDate ().timeIntervalSince1970
+                "t": NSDate().timeIntervalSince1970
             ],
             headers: headers
         )
@@ -32,11 +35,11 @@ class Githubservice {
         .serializingDecodable([Repository].self)
         .value
     }
-    
+
     func createRepository(name: String, desc: String) async throws -> Repository {
         let cleanName = name.trimmingCharacters(in: .whitespacesAndNewlines)
         let cleanDesc = desc.trimmingCharacters(in: .whitespacesAndNewlines)
-        
+
         var parameters: [String: Any] = [
             "name": cleanName
         ]

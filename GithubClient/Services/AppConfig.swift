@@ -9,12 +9,12 @@ import Foundation
 
 enum AppConfig {
     private static let filename = "config"
-    
+
     private enum Keys {
         static let apiBaseUrl = "API_BASE_URL"
         static let apiToken = "API_TOKEN"
     }
-    
+
     private static let config: [String: Any] = {
         guard
             let url = Bundle.main.url(forResource: filename, withExtension: "plist"),
@@ -26,23 +26,17 @@ enum AppConfig {
             ),
             let dict = plist as? [String: Any]
         else {
-            fatalError("Unable to load \(filename).plist")
+            return [:]
         }
-        
+
         return dict
     }()
-    
+
     static var apiBaseURL: String {
-        guard let value = config[Keys.apiBaseUrl] as? String else {
-            fatalError("No se pudo obtener la URL de la base de la API")
-        }
-        return value
+        (config[Keys.apiBaseUrl] as? String) ?? "https://api.github.com"
     }
-    
+
     static var apiToken: String {
-        guard let value = config[Keys.apiToken] as? String else {
-            fatalError("No se pudo obtener el API Token")
-        }
-        return value
+        (config[Keys.apiToken] as? String) ?? ""
     }
 }

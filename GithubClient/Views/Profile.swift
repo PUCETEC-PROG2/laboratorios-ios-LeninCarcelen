@@ -13,14 +13,15 @@ struct Profile: View {
             VStack(alignment: .leading) {
                 Text("Alejandro Vargas")
                     .font(.title)
-                Image(uiImage: .githubLogo)
+
+                Image("githubLogo")
                     .resizable()
                     .scaledToFit()
-                
+
                 Text("VargasAlejandro27")
                     .font(.headline)
                     .padding(.vertical)
-                
+
                 Text("7 palabras Esenciaaaa")
             }
             .navigationTitle("Perfil de usuario")
