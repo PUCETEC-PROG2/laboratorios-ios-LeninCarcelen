@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RepoItem: View {
     let repository: Repository
+    let onEdit: () -> Void
+    let onDelete: () -> Void
 
     var body: some View {
         HStack(spacing: 12) {
@@ -56,7 +58,22 @@ struct RepoItem: View {
             }
 
             Spacer()
-            
+
+            VStack(spacing: 8) {
+                Button(action: onEdit) {
+                    Image(systemName: "pencil.circle.fill")
+                        .font(.title2)
+                        .foregroundStyle(.blue)
+                }
+                .buttonStyle(.plain)
+
+                Button(action: onDelete) {
+                    Image(systemName: "trash.circle.fill")
+                        .font(.title2)
+                        .foregroundStyle(.red)
+                }
+                .buttonStyle(.plain)
+            }
         }
         .padding()
     }
@@ -75,6 +92,8 @@ struct RepoItem: View {
                 avatarUrl: "https://avatars.githubusercontent.com/u/173552925?v=4",
                 bio: "esta es una prueba"
             )
-        )
+        ),
+        onEdit: {},
+        onDelete: {}
     )
 }

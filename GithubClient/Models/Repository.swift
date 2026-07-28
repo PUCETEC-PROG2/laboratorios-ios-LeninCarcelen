@@ -6,10 +6,10 @@
 //
 import Foundation
 
-struct Repository: Identifiable,Decodable{
+struct Repository: Identifiable, Decodable {
     let id: Int
-    let name: String
-    let description: String?
-    let language: String?
+    var name: String
+    var description: String?
+    var language: String?
     let owner: UserInfo
 }
