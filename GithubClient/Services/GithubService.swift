@@ -54,7 +54,7 @@ class GithubService {
             encoding: JSONEncoding.default,
             headers: headers
         )
-        .validate()
+        .validate(statusCode: 200..<300)
         .serializingDecodable(Repository.self)
         .response
 

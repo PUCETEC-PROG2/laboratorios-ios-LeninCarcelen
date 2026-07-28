@@ -38,5 +38,5 @@ struct RepoList: View {
 }
 
 #Preview {
-    RepoList()
+    RepoList(viewController: RepoListViewController())
 }

@@ -12,7 +12,7 @@ struct RepoForm: View {
     @StateObject private var viewController: RepoFormViewController
     @Binding var selectTab : Int
 
-    init(selectTab: Binding<Int>, repoListViewController: RepoListViewController) {
+    init(selectTab: Binding<Int>, repoListViewController: RepoListViewController?=nil) {
         self._selectTab = selectTab
         self._viewController = StateObject(wrappedValue: RepoFormViewController(listController: repoListViewController))
     }
